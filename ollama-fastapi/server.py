@@ -5,18 +5,14 @@ app = FastAPI()
 
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World", "msg" : response}
-
-
-
-response = chat(
-    model="gemma:2b",
-    messages=[
-        {
-            "role": "user",
-            "content": "Why is the sky blue?",
-        },
-    ],
-)
-print(response.message.content)
+def read_root(input:str):
+    response = chat(
+        model="gemma:2b",
+        messages=[
+            {
+                "role": "user",
+                "content": input,
+            },
+        ],
+    )
+    return response.message.content
